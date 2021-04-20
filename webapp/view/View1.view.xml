@@ -1,0 +1,118 @@
+<mvc:View controllerName="UI5_.TableFunctions.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+							<items>
+								<IconTabFilter icon="sap-icon://legend" text="Table">
+										<Title id="Title2" text="PO Details" level="H4" titleStyle="H4"/>
+									<Toolbar>
+										<ToolbarSpacer/>
+										<SearchField id="Search_PO" search="onSearchPO" width="auto" placeholder="PO Number"/>
+										<SearchField id="Search_Vendor" search="onSearchVendor" width="auto" placeholder="Vendor Number"/>
+									</Toolbar>
+									<Table id="PO_Table_ID" items="{path: '/POHeaderSet', sorter: {path: 'EBELN'}}">
+										<columns>
+											<Column width="12em">
+												<Text text="PO Number"/>
+											</Column>
+											<Column width="12em">
+												<Text text="Vendor Number"/>
+											</Column>
+											<Column width="12em">
+												<Text text="Company Code"/>
+											</Column>
+											<Column width="12em">
+												<Text text="Created By"/>
+											</Column>
+											<Column width="12em">
+												<Text text="PO Category"/>
+											</Column>
+											<Column width="12em">
+												<Text text="PO Type"/>
+											</Column>
+											<Column width="12em">
+												<Text text="Control Indicator"/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Text text="{EBELN}"/>
+													<Text text="{LIFNR}"/>
+													<Text text="{BUKRS}"/>
+													<Text text="{ERNAM}"/>
+													<Text text="{BSTYP}"/>
+													<Text text="{BSART}"/>
+													<Text text="{BSAKZ}"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</IconTabFilter>
+								<IconTabFilter icon="sap-icon://attachment" text="Add/Update">
+									<f:SimpleForm id="PO_Edit_ID" layout="ResponsiveGridLayout" title="Add/Change PO">
+										<f:toolbar>
+											<Toolbar id="TB1">
+												<Title id="Title" text="Add/Update PO" level="H4" titleStyle="H4"/>
+												<ToolbarSpacer/>
+												<Button id="Edit_B1" text="Edit" press="onEdit" type="Default"/>
+												<Button id="Cancel_B5" text="Cancel" type="Transparent" press="onCancel" visible="false"/>
+											</Toolbar>
+										</f:toolbar>
+										<f:content>
+											<Label text="PO Number"/>
+											<Input id="ID_EBELN" width="200px" required="true"/>
+											<Button id="Get_B4" text="Get" press="onGet" type="Emphasized" width="50px"/>
+											<Label text="Vendor Number"/>
+											<Input id="ID_LIFNR" width="200px" editable="false"/>
+											<Label text="Company Code"/>
+											<Input id="ID_BUKRS" width="200px" editable="false"/>
+											<Label text="Created By"/>
+											<Input id="ID_ERNAM" width="200px" editable="false"/>
+											<Label text="PO Category"/>
+											<!--<Input id="ID_BSTYP" width="200px" editable="false"/>-->
+											<Select id="ID_BSTYP" width="200px" showSecondaryValues="true" items="{ path: '/F4_POCategorySet', sorter: { path: 'BSTYP' } }">
+												<core:ListItem key="{BSTYP}" text="{BSTYP}" additionalText="{NAME}"/>
+											</Select>
+											<Label text="PO Type"/>
+											<!--<Input id="ID_BSART" width="200px" editable="false"/>-->
+											<Select id="ID_BSART" width="200px" showSecondaryValues="true" items="{ path: '/F4_POTypeSet', sorter: { path: 'BSART' } }">
+												<core:ListItem key="{BSART}" text="{BSART}" additionalText="{BATXT}"/>
+											</Select>
+											<Label text="Control Indicator"/>
+											<!--<Input id="ID_BSAKZ" width="200px" editable="false"/>-->
+											<Select id="ID_BSAKZ" width="200px" showSecondaryValues="true" items="{ path: '/F4_POIndicatorSet', sorter: { path: 'BSAKZ' } }">
+												<core:ListItem key="{BSAKZ}" text="{BSAKZ}" additionalText="{NAME}"/>
+											</Select>
+										</f:content>
+									</f:SimpleForm>
+									<Toolbar class="ResponsivePadding">
+										<content>
+											<ToolbarSpacer/>
+											<Button id="Create_B2" text="Create PO" press="onCreate" type="Accept"/>
+											<Button id="Update_B3" text="Update PO" press="onUpdate" type="Reject"/>
+										</content>
+									</Toolbar>
+								</IconTabFilter>
+								<IconTabFilter icon="sap-icon://notes" text="Remove">
+									<content>
+										<Title id="Title1" text="Delete PO" level="H4" titleStyle="H4"/>
+										<Toolbar>
+											<Label text="PO Number:" width="100px" required="true"/>
+											<Input id="ID_EBELN_DEL" width="200px" required="true"/>
+											<Button id="Delete_B1" text="Delete PO" press="onDelete" width="100px"/>
+										</Toolbar>
+									</content>
+								</IconTabFilter>
+							</items>
+						</IconTabBar>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
